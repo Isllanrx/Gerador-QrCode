@@ -1,42 +1,57 @@
----
+# QR Code Generator - Technical Documentation
 
-# Aplicativo de Geração de QR Code
+Standardized system for QR Code generation utilizing a modular architecture.
 
-Este é um aplicativo Python simples para gerar e exibir QR Codes a partir de dados fornecidos pelo usuário.
+## System Architecture
 
-## Pré-requisitos
-
-Antes de começar, certifique-se de ter as seguintes bibliotecas instaladas:
-
-- `qrcode`
-- `customtkinter`
-- `Pillow`
-
-Você pode instalá-las usando o `pip`:
-
-```bash
-pip install qrcode customtkinter Pillow
+```mermaid
+graph TD
+    A[main.py] --> B[src.ui.app.QRCodeApp]
+    B --> C[src.core.qr_generator.QRGenerator]
+    B --> D[src.utils.validators]
+    B --> E[src.data.countries]
+    C --> F[FileSystem /Qr_code]
 ```
 
-## Como usar
+## Module Description
 
-1. Execute o arquivo `main.py`.
-2. A interface do aplicativo será aberta.
-3. Insira o texto desejado.
-4. Clique no botão "Gerar QR Code".
+- **src/core**: Logic for QR code encoding and file persisting.
+- **src/ui**: GUI implementation using CustomTkinter.
+- **src/data**: Static datasets and configuration.
+- **src/utils**: Pure functions for validation and sanitization.
 
-O QR Code gerado será salvo na pasta Qr-Code e exibido na interface do aplicativo.
+## Dependency Management
 
-## Funcionalidades
+The project uses PEP 517 standards. Dependencies are listed in `requirements.txt` and `pyproject.toml`.
 
-- Geração de QR Code a partir de texto fornecido pelo usuário.
-- Visualização do QR Code gerado dentro da pasta Qr-Code.
+- qrcode
+- pillow
+- customtkinter
 
-## Interface
+## Installation
 
-![Interface do Aplicativo](https://github.com/Isllanrx/Qr-Code-Python/raw/main/Interface.png)
+```bash
+pip install -r requirements.txt
+```
 
----
+## Execution
 
-## Final
-- Projeto desenvolvido pelo Isllan toso para fins educativos.
+```bash
+python main.py
+```
+
+## Quality Assurance
+
+Unit tests focus on the generation core:
+
+```bash
+$env:PYTHONPATH="."; python tests/test_qr_generator.py
+```
+
+## Technical Specification
+
+- **Error Correction**: QR Code Error Correction Level L.
+- **Output Format**: PNG.
+- **DPI/Size**: Box size 10, Border 4.
+- **Security**: Filename sanitization via whitelist (alphanumeric).
+```

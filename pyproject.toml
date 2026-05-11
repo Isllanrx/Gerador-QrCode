@@ -1,0 +1,16 @@
+[project]
+name = "gerador-qrcode"
+version = "1.0.0"
+description = "Gerador de QR Code moderno e profissional"
+authors = [
+    {name = "Isllan Toso", email = "isllan@example.com"}
+]
+dependencies = [
+    "qrcode",
+    "pillow",
+    "customtkinter"
+]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W", "C90", "I"]

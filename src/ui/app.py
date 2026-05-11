@@ -14,16 +14,18 @@ class QRCodeApp(ctk.CTk):
         self.qr_generator = QRGenerator()
         self.geometry("600x850")
         self.title("Gerador de QR Code - Enterprise Edition")
-        if os.path.exists("Icone.ico"):
-            self.iconbitmap("Icone.ico")
+        icon_path = os.path.join("assets", "Icone.ico")
+        if os.path.exists(icon_path):
+            self.iconbitmap(icon_path)
         self._setup_ui()
 
     def _setup_ui(self):
-        if os.path.exists("Interface.png"):
+        img_path = os.path.join("assets", "Interface.png")
+        if os.path.exists(img_path):
             try:
                 header_image = ctk.CTkImage(
-                    light_image=Image.open("Interface.png"),
-                    dark_image=Image.open("Interface.png"),
+                    light_image=Image.open(img_path),
+                    dark_image=Image.open(img_path),
                     size=(200, 200)
                 )
                 self.image_label = ctk.CTkLabel(self, image=header_image, text="")
